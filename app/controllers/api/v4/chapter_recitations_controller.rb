@@ -12,6 +12,12 @@ module Api::V4
       render
     end
 
+    def rss
+      @episodes = ::Audio::ChapterAudioFile.episodes
+
+      render template: 'api/v4/chapter_recitations/rss', formats: [:xml]
+    end
+
     protected
     def init_presenter
       @presenter = ::Audio::RecitationPresenter.new(params)
